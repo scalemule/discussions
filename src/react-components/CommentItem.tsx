@@ -13,14 +13,13 @@ interface CommentItemProps {
 const MAX_INDENT = 4;
 
 export function CommentItem({ comment, depth = 0, onReply, theme }: CommentItemProps): React.JSX.Element {
-  const indent = Math.min(depth, MAX_INDENT);
   const replies = comment.replies ?? [];
   return (
     <div
       style={{
         ...themeToStyle(theme),
-        marginLeft: indent * 24,
-        paddingLeft: depth > 0 ? 16 : 0,
+        marginLeft: depth > 0 && depth <= MAX_INDENT ? 12 : 0,
+        paddingLeft: depth > 0 && depth <= MAX_INDENT ? 8 : 0,
         borderLeft: depth > 0 ? '2px solid var(--sm-d-border, #d7dcd7)' : 'none',
         marginTop: 16,
         fontFamily: 'var(--sm-d-font, Arial, sans-serif)',

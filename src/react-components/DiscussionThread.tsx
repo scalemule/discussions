@@ -7,6 +7,8 @@ import { CommentInput } from './CommentInput';
 
 interface DiscussionThreadProps {
   comments: DiscussionComment[];
+  onReply?: (commentId: string) => void;
+  emptyMessage?: string;
   onAddComment?: (
     content: string,
     parentId?: string,
@@ -38,6 +40,8 @@ function buildTree(comments: DiscussionComment[]): DiscussionComment[] {
 
 export function DiscussionThread({
   comments,
+  onReply,
+  emptyMessage = "No comments yet. Be the first to share a thought on this story.",
   onAddComment,
   currentUserId,
   allowGuestComments = true,
@@ -77,7 +81,7 @@ export function DiscussionThread({
       {error && <p style={{ color: 'var(--sm-d-primary)', fontSize: 14 }}>{error}</p>}
       {tree.length === 0 ? (
         <p style={{ color: 'var(--sm-d-muted)', fontSize: 15, padding: '8px 0 16px' }}>
-          No comments yet. Be the first to share a thought on this story.
+          {emptyMessage}
         </p>
       ) : (
         tree.map((comment) => (
@@ -85,7 +89,7 @@ export function DiscussionThread({
             key={comment.id}
             comment={comment}
             depth={0}
-            onReply={onAddComment ? setReplyingTo : undefined}
+            onReply={onReply ?? (onAddComment ? setReplyingTo : undefined)}
             theme={theme}
           />
         ))
