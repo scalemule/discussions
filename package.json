@@ -1,7 +1,7 @@
 {
   "name": "@scalemule/discussions",
-  "version": "0.0.1",
-  "description": "ScaleMule Discussions SDK — threaded comments on any content object",
+  "version": "0.0.2",
+  "description": "ScaleMule Discussions SDK \u2014 threaded comments on any content object",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -36,8 +36,12 @@
     "react-dom": ">=18.0.0"
   },
   "peerDependenciesMeta": {
-    "react": { "optional": true },
-    "react-dom": { "optional": true }
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/react": "^18.3.0",
@@ -65,5 +69,12 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "typesVersions": {
+    "*": {
+      "react": [
+        "dist/react.d.ts"
+      ]
+    }
   }
 }
